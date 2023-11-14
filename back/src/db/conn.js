@@ -4,17 +4,17 @@ const { Sequelize } = require('sequelize');
 // Sensitive Data
 const { database } = require('../sensitiveData/config');
 
-const sequelize = new Sequelize(
-    database.database,
-    database.user,
-    database.password,
-    {
-        dialect: 'postgres',
-        host: database.host,
-        port: database.port,
-        ssl: true
+const databaseURL = process.env.database || database.renderExternalURL;
+
+const sequelize = new Sequelize(databaseURL, {
+    dialect: 'postgres',
+    dialectOptions: {
+        ssl: {
+            require: true,  
+            rejectUnauthorized: false // <<<<<<< YOU NEED THIS          
+        }
     }
-);
+});
 
 const models = {
     User: require('../models/User')(sequelize, Sequelize),
@@ -34,3 +34,33 @@ Object.values(models).forEach(model => {
 });
 
 module.exports = { models, sequelize };
+
+
+// const sequelize = new Sequelize(
+//     database.database,
+//     database.user,
+//     database.password,
+//     {
+//         dialect: 'postgres',
+//         host: database.host,
+//         port: database.port,
+//         ssl: true
+//     }
+// );
+
+
+// Testar a conexão
+// async function testarConexao() {
+//     try {
+//         await sequelize.authenticate();
+//         console.log('Conexão bem-sucedida.');
+//     } catch (error) {
+//         console.error('Erro ao conectar ao banco de dados:', error);
+//     } finally {
+//         // Certifique-se de sempre fechar a conexão, mesmo que o teste falhe.
+//         await sequelize.close();
+//     }
+// }
+
+// // Chame a função para testar a conexão
+// testarConexao();
