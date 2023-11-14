@@ -1,0 +1,318 @@
+@use '../theme/variables'
+
+.register-title
+    color: variables.$primary0
+
+.form
+    display: flex
+    align-items: flex-start
+    flex-direction: column
+
+    width: 40%
+    padding: 2% 2%
+
+    label
+        color: variables.$text-color
+        font-size: 1.2em
+
+    input
+        width: 100%
+        height: 20px
+        padding: 1.3%
+        border: none
+        border-radius: 10px
+
+        &:focus
+            border: 1px solid red
+
+    button
+        padding: 3% 8%
+
+        font-weight: 700
+
+        background: variables.$primary-1
+        border: none
+        border-radius: 10px
+
+        &:hover
+            background: variables.$primary1
+            cursor: pointer
+
+    fieldset
+        width: 100%
+        color: white
+        border: 1px solid variables.$primary0
+        padding: 3%
+        border-radius: 10px
+        display: flex
+        align-items: center
+        flex-wrap: wrap
+
+        legend
+            font-size: 1.3em
+            padding: 0 20px
+
+.form-select
+    width: 100%
+    display: flex
+    align-items: center
+    justify-content: space-between
+
+    select
+        width: 50%
+        border: none
+        padding: 2%
+        border-radius: 10px
+
+.form-button
+    display: flex
+    align-items: center
+    justify-content: space-between
+    width: 100%
+
+.form-text
+    display: flex
+    flex-direction: column
+
+.checkbox
+    display: flex
+    align-items: center
+
+    padding: 2%
+    margin: 2%
+    border: 2px solid variables.$secondary-1
+    border-radius: 10px
+    background-color: variables.$secondary1
+
+    label
+        font-size: 1em
+        width: 100%
+        margin-right: 20px
+        font-family: variables.$normal-font
+
+    input
+        width: 30px
+        height: 30px
+        cursor: pointer
+
+    input:checked
+        background-color: red
+
+.selectOptions
+    display: flex
+    align-items: center
+
+.select-title
+    margin: 0
+    font-size: 1.4em
+    font-family: variables.$title-font
+    color: variables.$text-color
+
+.dropdown-container
+    position: relative
+
+.dropdown-btn
+    background-color: variables.$secondary-1
+    color: variables.$text-color
+    border: none
+    padding: 10px 20px
+    font-size: 1.2em
+    border-radius: 10px
+    cursor: pointer
+
+.select-list
+    list-style-type: none
+    padding: 0
+    position: absolute
+    top: 100%
+    left: 0
+    background-color: variables.$secondary-1
+    border-radius: 10px
+    display: none
+
+.select-item
+    font-size: 1.2em
+    padding: 10px 20px
+    cursor: pointer
+
+.dropdown-container:hover .select-list
+    display: block
+
+.select-list li
+    display: none
+
+    .dropdown-container:hover &
+        display: block
+
+// Register Blog
+.register-blog
+    width: 90%
+    padding: 0%
+
+    label
+        color: variables.$text-color
+        font-size: 1.2em
+
+    input
+        width: 100%
+        height: 20px
+        padding: 0.5%
+        border: none
+        border-radius: 10px
+
+    button
+        padding: 1% 3%
+
+        font-weight: 700
+
+        background: variables.$primary-1
+        border: none
+        border-radius: 10px
+
+        &:hover
+            background: variables.$primary1
+            cursor: pointer
+
+    fieldset
+        display: flex
+        align-items: center
+        flex-wrap: wrap
+
+        width: 100%
+        padding: 0%
+
+        color: white
+
+        border: 1px solid variables.$primary0
+
+        border-radius: 10px
+
+        legend
+            font-size: 1.3em
+            padding: 0 20px
+
+    .form-image
+        display: flex
+        align-items: center
+        justify-content: space-between
+        flex-wrap: wrap
+        width: 100%
+
+        .image-selection
+            display: flex
+            align-items: center
+            justify-content: center
+            flex-direction: column
+            flex-wrap: wrap
+
+            input[type="file"]
+                display: none
+
+            label
+                width: 200px
+                padding: 3%
+                font-size: 1em
+                border-radius: 10px
+                background-color: #333
+                color: #FFF
+                text-transform: uppercase
+                text-align: center
+                cursor: pointer
+
+            label:hover
+                background: variables.$primary-1
+
+            small
+                font-size: 1em
+
+            img
+                text-align: center
+
+    .checkbox
+        padding: 1%
+        margin: 1%
+
+        label
+            font-size: 1em
+            width: 100%
+            margin-right: 20px
+            font-family: variables.$normal-font
+
+        input
+            width: 30px
+            height: 30px
+            cursor: pointer
+
+    .textarea
+        width: 100%
+
+    .form-select select
+        margin-top: 2%
+        width: 80%
+        padding: 1%
+
+// Quill
+
+.quill
+    width: 100%
+
+.ql-toolbar.ql-snow
+    border: 1px solid variables.$primary0 !important
+    background-color: variables.$secondary1
+    width: 100%
+
+    svg
+        *
+            stroke: white !important
+
+    .ql-active
+        background-color: variables.$terciary0
+
+.ql-container.ql-snow
+    height: 300px
+    max-height: 500px
+    overflow: scroll
+
+    background-color: variables.$secondary-1
+    border: 1px solid variables.$primary0 !important
+
+.ql-snow .ql-picker-options
+    background-color: variables.$secondary-1 !important
+
+.ql-toolbar.ql-snow
+    border: 1px solid variables.$primary0 !important
+    background-color: variables.$secondary1
+    width: 100%
+    padding: 5%
+
+    svg
+        *
+            stroke: white !important
+
+.ql-formats
+    padding: 1%
+    border: 1px solid rgba(255, 255, 255, 0.2)
+    border-radius: 10px
+    margin: 1%
+
+    &:hover
+        background-color: variables.$secondary-1
+        border: 1px solid variables.$secondary-1
+
+.imageButton
+    width: 50%
+
+.ql-imageOne, .ql-imageTwo, .ql-imageThree
+    font-size: 0.8em
+    background-color: variables.$secondary0 !important
+    color: variables.$text-color
+    width: 30% !important
+    margin-right: 10px
+
+.ql-picker-label .ql-active
+    background-color: red !important
+
+.ql-snow.ql-toolbar .ql-picker-label.ql-active
+    color: variables.$terciary-1 !important
+    background-color: transparent
+        

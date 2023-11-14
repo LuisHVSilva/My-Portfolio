@@ -1,0 +1,29 @@
+@use '../theme/variables'
+@use '../_animations'
+@import '../_animations'
+
+.skills-images, .skill-item
+    display: flex
+    align-items: center
+    gap: 20px
+
+.skills-images
+    flex-wrap: wrap
+
+.skill-item
+    margin-bottom: 50px
+    width: 15%
+    transition: transform 0.3s ease
+
+    &:hover
+        transform: scale(1.2)
+
+    img
+        width: 20%
+
+@media (max-width: 1024px) and (orientation: portrait)
+    .skills-images
+        justify-content: center
+    .skill-item
+        margin-bottom: 50px
+        width: 40%

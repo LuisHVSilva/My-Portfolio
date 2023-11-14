@@ -1,0 +1,27 @@
+@use '../theme/variables'
+
+.contact-title
+    padding: 2% 0
+    width: 100%
+    
+    border-bottom: 1px solid variables.$primary0
+
+    text-align: center
+
+.contact-icons
+    display: flex
+    align-items: center
+    justify-content: space-evenly
+
+    width: 50%
+
+.contact-item
+    transition: transform 0.3s
+
+    &:hover
+        transform: scale(1.3)
+
+@media (max-width: 768px) and (orientation: portrait)
+    .contact-icons
+        width: 100%
+        margin-top: 5%

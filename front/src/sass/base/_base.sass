@@ -1,0 +1,104 @@
+@use '../theme/variables'
+
+// Geral 
+
+*
+    margin: 0
+    padding: 0
+
+body
+    background-color: variables.$secondary0
+    padding: 25px 50px
+
+// nav
+
+nav
+    display: flex
+    align-items: center
+    justify-content: space-between
+
+    ul
+        li
+            margin-right: 20px
+
+//Text
+
+h1, th
+    font-size: 2em
+
+h2
+    font-size: 1.5em
+
+h3
+    font-size: 1.17em
+
+h4, h5
+    font-size: 1.07em
+
+h6, p, a, button, span
+    font-size: 1em    
+
+h1, h2, h3, th
+    color: variables.$text-color-title
+    font-family: variables.$title-font
+    font-weight: variables.$title-weight
+
+h4, h5, h6, p, span, td
+    color: variables.$text-color
+    font-family: variables.$normal-font
+    text-align: justify
+    line-height: 30px
+
+a, i
+    color: variables.$text-color
+    font-family: variables.$title-font
+    text-decoration: none
+
+    &:hover
+        color: variables.$terciary0
+
+small    
+    color: variables.$text-color
+    font-weight: variables.$title-weight
+    font-size: 1em
+    opacity: 0.7
+
+// Icons
+
+i
+    color: variables.$text-color
+
+//List
+
+ul
+    list-style: none
+    display: flex
+    align-items: center
+    justify-content: space-between
+
+li
+    color: variables.$text-color
+
+//Footer
+footer
+    text-align: center            
+    p
+        text-align: center
+
+//Cellpthone
+@media (max-width: 768px) and (orientation: portrait)
+    body
+        background-color: variables.$secondary0
+        padding: 10px 20px
+
+    nav
+        display: flex
+        align-items: center
+        justify-content: space-around
+        flex-direction: column
+
+        ul
+            width: 100%
+
+            li
+                margin-right: 0

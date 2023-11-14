@@ -1,0 +1,65 @@
+@use '../theme/variables'
+
+.experience-container
+    display: flex
+
+    gap: 50px
+
+.experience-choices
+    position: relative
+    width: 40%
+    display: flex        
+
+    justify-content: center
+    flex-direction: column
+    padding: 0 5%    
+
+    z-index: 1
+
+    &::before
+        content: ""
+        position: absolute
+        top: 0
+        left: 0
+        width: 100%
+        height: 100%
+        background-color: variables.$secondary0
+        z-index: -1
+
+    p
+        cursor: pointer
+        padding-left: 20px
+
+.experience-choice-active
+    border-left: 2px solid variables.$primary0
+    border-radius: 1px
+
+.experience-text     
+    width: 100%
+
+.experience-text-title
+    display: flex
+    justify-content: space-between
+    width: 100%    
+
+.experinece-title, .experience-time
+    font-weight: variables.$subtitle-weight
+
+.experience-time
+    color: variables.$primary0
+
+@media (max-width: 1024px) and (orientation: portrait)
+    .experience-container
+        flex-direction: column        
+        align-items: center
+        width: 100%
+
+    .experience-choices
+        width: 90%
+        padding: 5% 
+
+    .experience-text-title
+        align-items: center
+        flex-direction: column
+        p
+            text-align: flex-start

@@ -1,0 +1,49 @@
+@use '../theme/variables'
+
+#l-header, #skills, #bottom-blog
+    display: flex
+    flex-direction: column
+
+#l-main, #not-found, #admin, #post-section
+    display: flex
+    align-items: center
+    justify-content: center
+    flex-direction: column
+    margin-top: 5%
+    width: 100%
+
+#about, #skills, #last-posts-index, #experience, #main-projects, #other-projects, #top-blog, #bottom-blog, #not-found, #logs
+    width: 100%
+    margin-bottom: 5%
+
+#experience
+    background-color: variables.$secondary-1
+    padding: 3% 3%
+
+#top-blog
+    display: flex
+    justify-content: space-between 
+
+#post-section
+    width: 80%
+    margin: 2% auto
+
+//Cellpthone
+@media (max-width: 768px) and (orientation: portrait)
+    #l-header, #post-section
+        width: 100%
+
+    #about, #skills, #last-posts-index, #experience
+        margin-bottom: 15%
+
+    #top-blog
+        display: flex
+        justify-content: center
+        align-items: center
+        flex-direction: column
+
+    #bottom-blog
+        display: flex
+        justify-content: center
+        align-items: center
+        flex-direction: column

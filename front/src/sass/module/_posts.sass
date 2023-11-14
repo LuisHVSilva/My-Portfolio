@@ -1,0 +1,80 @@
+@use '../theme/variables'
+
+.post
+    h1
+        font-size: 3em
+        background-color: variables.$secondary1
+        border-radius: 10px
+        border: 1px solid variables.$secondary-1
+        padding: 2%
+        width: 100%
+
+    h2, p
+        line-height: 40px
+
+    h2
+        font-size: 1.3em
+        font-style: italic
+
+    img, small
+        width: 100%
+        margin: 2%
+
+    img
+        border-radius: 10px
+
+    h3
+        margin: 5% 0
+        font-size: 2em
+
+    ol
+        margin-top: 2%
+        line-height: 1.4em
+
+    li
+        margin-bottom: 2%
+
+    .post-link
+        align-self: flex-start
+        padding: 1%
+        font-size: 1.2em
+        background-color: variables.$primary0
+
+        border-radius: 10px
+
+        &:hover
+            background-color: variables.$primary-1
+            color: black
+
+//Cellpthone
+@media (max-width: 768px) and (orientation: portrait)
+    .post
+        h1
+            font-size: 2em
+            padding: 5%
+            margin-bottom: 10%
+
+        h2, p
+            line-height: 40px
+
+        h2
+            font-size: 1em
+            font-style: italic
+
+        img
+            margin: 5% 0
+
+        h3
+            margin-bottom: 5%
+            font-size: 2em
+
+        ol
+            margin-top: 2%
+            line-height: 1.8em
+
+        li
+            margin-bottom: 2%
+
+        .post-link
+            margin: 10% 0
+            padding: 3%

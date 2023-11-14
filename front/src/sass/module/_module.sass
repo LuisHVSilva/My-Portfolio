@@ -1,0 +1,107 @@
+@use '../animations'
+
+@use '../theme/variables'
+
+@use '../module/header'
+@use '../module/about'
+@use '../module/experience'
+@use '../module/skills'
+@use '../module/_lastPostsIndex'
+@use '../module/projects'
+@use '../module/searchBlog'
+@use '../module/blog'
+@use '../module/notFound'
+@use '../module/admin'
+@use '../module/adminDashboard'
+@use '../module/form'
+@use '../module/formMesseges'
+@use '../module/posts'
+@use '../module/logs'
+@use '../module/active-user'
+
+// Scroll    
+::-webkit-scrollbar
+    width: 10px
+    scrollbar-width: thin
+    scrollbar-color: variables.$primary0 variables.$primary-1
+
+::-webkit-scrollbar-thumb
+    background-color: variables.$primary0
+
+// COLORS
+.color-primary0
+    color: variables.$primary0
+
+.bold
+    font-weight: 700
+
+.italic
+    font-style: italic
+
+//TEXT
+.h1, .h2, .h3
+    font-size: 2em    
+    margin-bottom: 2%
+
+.h4, .h5
+    font-size: 1.5em
+
+.h6
+    font-size: 1em
+
+.h1, .h2, .h3
+    font-family: variables.$title-font
+    font-weight: variables.$title-weight
+
+.h4, .h5, .h6
+    font-family: variables.$normal-font
+    text-align: justify
+
+.emphasis
+    color: variables.$primary0    
+    font-weight: variables.$title-weight
+    font-family: variables.$title-font
+    font-size: 1em
+
+// MARGIN
+.mt-2
+    margin-top: 2%
+
+.mt-5
+    margin-top: 5%
+
+.mt-10
+    margin-top: 10%
+
+.mt-15
+    margin-top: 15%
+
+.mb-2
+    margin-bottom: 2%
+
+.mb-5
+    margin-bottom: 5%
+
+.mb-10
+    margin-bottom: 10%
+
+.mb-15
+    margin-bottom: 15%
+
+.ml-5
+    margin-left: 5%
+
+.ml-20px
+    margin-left: 20px
+
+// ICONS
+.icon-list
+    align-content: inherit
+    justify-content: flex-start
+
+    li
+        padding-right: 10%
+
+@media (max-width: 768px) and (orientation: portrait)                
+    .h1
+        margin-bottom: 8%

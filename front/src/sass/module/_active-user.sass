@@ -1,0 +1,25 @@
+@use '../theme/variables'
+
+.active-user-input
+    width: 100%
+
+.active-user-input
+    display: flex
+    width: 100%
+    align-items: center
+    justify-content: space-around    
+
+    input
+        width: 15%
+        height: 2em
+        font-size: 2em
+        margin: 0 2px
+        text-align: center
+        text-transform: uppercase
+        outline: none
+        box-sizing: border-box
+
+    input:focus
+        border: 2px solid
+        border-color: variables.$primary0
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5)

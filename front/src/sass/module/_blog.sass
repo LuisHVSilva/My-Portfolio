@@ -1,0 +1,159 @@
+@use '../theme/variables'
+@use '../_animations'
+@import '../_animations'
+
+.top-blog
+    display: flex
+    justify-content: space-between
+
+// Filter
+.filter
+    width: 100%
+    max-width: 400px
+
+.tags, .categories
+    background-color: variables.$secondary-1
+
+    padding: 3%
+    border: 1px solid variables.$text-color
+    border-radius: 10px
+
+.tags-container
+    display: flex
+    align-items: center
+    flex-wrap: wrap
+
+    a
+        padding: 2%
+        margin: 2%
+        margin-right: 0
+
+        &:hover
+            background-color: variables.$secondary1
+            color: variables.$primary-1
+
+.categories-item
+    display: flex
+    align-items: center
+    justify-content: space-between
+    font-size: 1em
+
+    a
+        font-family: variables.$normal-font
+
+        &:hover
+            color: variables.$primary-1
+
+// Highlights and bottom-blog
+.card-title
+    font-family: variables.$title-font
+    font-weight: variables.$subtitle-weight
+    color: variables.$primary-1
+    font-size: 1.5em
+    text-align: start
+
+.card-link
+    opacity: 0.6
+
+    &:hover
+        opacity: 1
+
+    span:hover
+        color: variables.$primary-1
+
+.card-tags
+    width: 100%
+
+    display: flex
+    align-items: center
+    justify-content: space-between
+    flex-wrap: wrap
+
+    a
+        background-color: variables.$secondary-1
+        padding: 2%
+        font-size: .8em
+        border-radius: 5px
+
+        &:hover
+            background-color: variables.$secondary0
+            color: variables.$primary-1
+
+.highlights-card, .blog-card
+    padding: 1% 2%
+    border-radius: 10px
+    border: 1px solid variables.$secondary-1
+    background-color: variables.$secondary1
+
+    img
+        width: 100%
+        border-radius: 10px
+
+// Highlights
+.highlights-container, .highlights-card, .highlights-text
+    display: flex
+
+.highlights-container
+    width: 90%
+    align-items: top
+    justify-content: space-between
+    flex-wrap: wrap
+
+    .highlights-card
+        flex-direction: column
+        align-items: flex-start
+
+        width: 40%
+
+        .highlights-text
+            align-items: flex-start
+            justify-content: space-between
+            flex-direction: column
+
+            width: 100%
+            height: 100%
+
+//Bottom-Blog    
+.bottom-blog-container, .blog-card, .blog-text
+    display: flex
+
+.bottom-blog-container
+    align-items: top
+    justify-content: space-between
+    flex-wrap: wrap
+
+    .blog-card
+        align-items: start
+        justify-content: top
+        flex-direction: column
+
+        width: 20%
+
+        .blog-text
+            align-items: flex-start
+            justify-content: space-between
+            flex-direction: column
+
+            width: 100%
+            height: 100%
+
+@media (max-width: 764px) and (orientation: portrait)
+    // Filter
+    .filter
+        margin-bottom: 15%
+    .tags
+        margin-bottom: 2% !important
+
+    // Highlights | bottom-blog
+    .highlights .h1
+        text-align: center
+
+    .highlights-container, .bottom-blog-container
+        width: 100%
+        align-items: center
+        justify-content: center
+        flex-direction: column
+
+        .highlights-card, .blog-card
+            width: 90%
+            padding: 3% 4%

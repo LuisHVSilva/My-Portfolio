@@ -1,0 +1,60 @@
+@use '../theme/variables'
+
+.header-apresentation
+    display: flex
+    align-items: center
+    margin-bottom: 3%
+    img
+        margin-right: 2%
+    h3
+        color: variables.$text-color
+        font-size: 1.5em
+
+.nav-link
+    font-size: 1.4em
+    display: inline-block
+    padding-bottom: 5px 
+    opacity: 0.9
+
+    &:hover
+        opacity: 1
+
+.about-link
+    .nav-link:hover
+        border-bottom: 2px solid variables.$primary0
+    .link-active
+        border-bottom: 2px solid variables.$primary0
+
+.project-link
+    .link-active
+        border-bottom: 2px solid variables.$terciary0
+    &:hover
+        border-bottom: 2px solid variables.$terciary0
+
+.blog-link
+    .link-active
+        border-bottom: 2px solid variables.$primary-1
+    &:hover
+        border-bottom: 2px solid variables.$primary-1
+
+.github-link
+    .link-active
+        border-bottom: 2px solid #5e1dad
+    &:hover
+        border-bottom: 2px solid #5e1dad
+    i:hover
+        color: white
+
+@media (max-width: 1000px) and (orientation: portrait)
+    .header-apresentation
+        display: flex                
+        margin-bottom: 30px
+        width: 100%        
+        img
+            margin-right: 20px
+        h3
+            color: variables.$text-color
+            font-size: 1.2em
+
+
+        

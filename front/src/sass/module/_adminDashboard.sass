@@ -1,0 +1,72 @@
+@use '../theme/variables'
+
+.dashboard
+    display: grid
+    width: 100%
+    grid-template-columns: repeat(50%, 2)
+    grid-template-columns: repeat(50%, 2)
+    gap: 15px
+
+    & section:nth-child(1)
+        grid-column-start: 1
+        grid-column-end: 2
+        grid-row-start: 1
+        grid-row-end: 2
+        border: 1px solid variables.$secondary-1
+
+    & section:nth-child(2)
+        grid-column-start: 1
+        grid-column-end: 2
+        grid-row-start: 2
+        grid-row-end: 3
+        border: 1px solid variables.$secondary-1
+
+    & section:nth-child(3)
+        grid-column-start: 2
+        grid-column-end: 3
+        grid-row-start: 1
+        grid-row-end: 3
+        border: 1px solid variables.$secondary-1
+
+.dashboard-section
+    padding: 30px
+    overflow: auto
+    // background-color: red
+
+.dashboard-item, .dashboard-options
+    display: flex
+    align-items: center
+    justify-content: space-between
+    font-size: 1.2em
+
+.dashboard-options
+    font-size: 1em
+    width: 35%
+
+    i
+        color: variables.$primary0
+
+.database-log .dashboard-item
+    padding: 1% 0
+
+.user-authorization, .updates-timestamp
+    color: variables.$primary-1
+
+.updates-timestamp
+    font-size: 0.8em
+
+.add-user
+    color: variables.$primary0
+
+.table-p-link
+    padding: 3%
+
+    font-size: 0.8em
+    font-weight: 700
+
+    border-radius: 10px    
+    border: none
+
+    &:hover
+        background-color: variables.$primary0
+        cursor: pointer
