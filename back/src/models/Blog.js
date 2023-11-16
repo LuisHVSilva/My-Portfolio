@@ -65,7 +65,7 @@ module.exports = (sequelize, DataTypes) => {
 
     Blog.associate = (models) => {
         Blog.belongsToMany(models.Tag, { through: 'Blog_Tag', as: 'blog_tag', foreignKey: 'blog', onDelete: 'CASCADE' });
-        Blog.belongsToMany(models.Categorie, { through: 'Blog_Categorie', as: 'blog_categorie', foreignKey: 'blog', onDelete: 'CASCADE' });
+        Blog.belongsToMany(models.Category, { through: 'Blog_Category', as: 'blog_category', foreignKey: 'blog', onDelete: 'CASCADE' });
         Blog.belongsTo(models.User, { as: 'creator', foreignKey: 'createdBy' });
         Blog.belongsTo(models.User, { as: 'updated', foreignKey: 'updatedBy' });
     };

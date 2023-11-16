@@ -30,12 +30,12 @@ module.exports = (sequelize, DataTypes) => {
         User.hasMany(models.Blog, { as: 'updatedBlogs', foreignKey: 'updatedBy' });
         User.hasMany(models.Tag, { as: 'createdTags', foreignKey: 'createdBy' });
         User.hasMany(models.Tag, { as: 'updatedTags', foreignKey: 'updatedBy' });
-        User.hasMany(models.Categorie, { as: 'createdCategories', foreignKey: 'createdBy' });
-        User.hasMany(models.Categorie, { as: 'updatedCategories', foreignKey: 'updatedBy' });
+        User.hasMany(models.Category, { as: 'createdCategorys', foreignKey: 'createdBy' });
+        User.hasMany(models.Category, { as: 'updatedCategorys', foreignKey: 'updatedBy' });
         User.hasMany(models.Blog_Tag, { as: 'createdBlogTags', foreignKey: 'createdBy' });
         User.hasMany(models.Blog_Tag, { as: 'updatedBlogTags', foreignKey: 'updatedBy' });
-        User.hasMany(models.Blog_Categorie, { as: 'createdBlogCategories', foreignKey: 'createdBy' });
-        User.hasMany(models.Blog_Categorie, { as: 'updatedBlogCategories', foreignKey: 'updatedBy' });
+        User.hasMany(models.Blog_Category, { as: 'createdBlogCategorys', foreignKey: 'createdBy' });
+        User.hasMany(models.Blog_Category, { as: 'updatedBlogCategorys', foreignKey: 'updatedBy' });
     };
 
     return User;

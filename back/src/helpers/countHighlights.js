@@ -5,19 +5,18 @@
  */
 
 const countHighlights = (objects) => {
-    try {        
-        let count = 0;
-
-        for (const key in objects) {
-            if (objects[key].highlight) {
-                count++;
-            }
-        }
-
-        return count;
-    } catch (err) {
-        throw new Error(`Erro ao contar destaques: ${err.message}`);
+    if (typeof objects !== 'object' || objects === null) {        
+        return null;
     }
+
+    let count = 0;
+    for (const key in objects) {
+        if (objects[key].highlight) {
+            count++;
+        }
+    }
+
+    return count;
 };
 
 module.exports = countHighlights;

@@ -1,6 +1,6 @@
 // Models
 const { models } = require('../db/conn');
-const BlogCategorie = models.Blog_Categorie;
+const BlogCategory = models.Blog_Category;
 
 // Helpers
 const Validator = require('../helpers/Validator');
@@ -9,21 +9,21 @@ const getUserByToken = require('../helpers/getUserByToken');
 // Constantsc
 const { HTTP_STATUS } = require('../constants');
 
-class BlogCategorieController {
+class BlogCategoryController {
     /**
-     * Register a new BlogCategorie in database.
+     * Register a new BlogCategory in database.
      * @param {Request} req - HTTP Request object.
      * @param {Response} res - HTTP Response object.
      * @returns {void}
      */
     static async register(req, res) {
-        const { blogId, categorieId } = req.body;
+        const { blogId, categoryId } = req.body;
 
         const blogIdValidator = new Validator(blogId, "BLOG ID").nullField().getError();
         if (blogIdValidator) { return res.status(HTTP_STATUS.UNPROCESSABLE_ENTITY).json({ error: blogIdValidator }); };
 
-        const categorieIdValidator = new Validator(categorieId, "Categorie ID").nullField().getError();
-        if (categorieIdValidator) { return res.status(HTTP_STATUS.UNPROCESSABLE_ENTITY).json({ error: categorieIdValidator }); };
+        const categoryIdValidator = new Validator(categoryId, "Category ID").nullField().getError();
+        if (categoryIdValidator) { return res.status(HTTP_STATUS.UNPROCESSABLE_ENTITY).json({ error: categoryIdValidator }); };
 
         try {
             const user = await getUserByToken(req);
@@ -32,48 +32,48 @@ class BlogCategorieController {
             const blog = await models.Blog.findByPk(blogId);
             if (!blog) { return res.status(HTTP_STATUS.UNPROCESSABLE_ENTITY).json({ error: 'Blog inválido.' }); };
 
-            const categorie = await models.Categorie.findByPk(categorieId);
-            if (!categorie) { return res.status(HTTP_STATUS.UNPROCESSABLE_ENTITY).json({ error: 'Categoria inválida.' }); };
+            const category = await models.Category.findByPk(categoryId);
+            if (!category) { return res.status(HTTP_STATUS.UNPROCESSABLE_ENTITY).json({ error: 'Categoria inválida.' }); };
 
-            const blogCategorie = await BlogCategorie.create({
+            const blogCategory = await BlogCategory.create({
                 blog: blog.id,
-                categorie: categorie.id,
+                category: category.id,
                 updatedBy: user.id,
                 createdBy: user.id,
             });
 
-            return res.status(HTTP_STATUS.OK).json({ result: blogCategorie });
+            return res.status(HTTP_STATUS.OK).json({ result: blogCategory });
         } catch (error) {
             return res.status(HTTP_STATUS.INTERNAL_SERVER_ERROR).json({ error: error.message });
         };
     };
 
     /**
-     * Delete a categorie related to a blog based in categorie id and categorie id
+     * Delete a category related to a blog based in category id and category id
      * @param {Request} req - HTTP Request object.
      * @param {Response} res - HTTP Response object.
      * @returns {void}
      */
-    static async deleteByCategorie(req, res) {
-        const { blogId, categorieId } = req.query;        
+    static async deleteByCategory(req, res) {
+        const { blogId, categoryId } = req.query;        
 
         const blogIdValidator = new Validator(blogId, "BLOG ID").nullField().getError();
         if (blogIdValidator) { return res.status(HTTP_STATUS.UNPROCESSABLE_ENTITY).json({ error: blogIdValidator }); };
 
-        const categorieIdValidator = new Validator(categorieId, "Categorie ID").nullField().getError();
-        if (categorieIdValidator) { return res.status(HTTP_STATUS.UNPROCESSABLE_ENTITY).json({ error: categorieIdValidator }); };
+        const categoryIdValidator = new Validator(categoryId, "Category ID").nullField().getError();
+        if (categoryIdValidator) { return res.status(HTTP_STATUS.UNPROCESSABLE_ENTITY).json({ error: categoryIdValidator }); };
 
         try {
             const blog = await models.Blog.findByPk(blogId);
             if (!blog) { return res.status(HTTP_STATUS.UNPROCESSABLE_ENTITY).json({ error: 'Blog inválido.' }); };
 
-            const categorie = await models.Categorie.findByPk(categorieId);
-            if (!categorie) { return res.status(HTTP_STATUS.UNPROCESSABLE_ENTITY).json({ error: 'Categoria inválida.' }); };
+            const category = await models.Category.findByPk(categoryId);
+            if (!category) { return res.status(HTTP_STATUS.UNPROCESSABLE_ENTITY).json({ error: 'Categoria inválida.' }); };
 
-            const blogCategorieRegistered = await BlogCategorie.findOne({ where: { blog: blog.id, categorie: categorieId } });
-            if (!blogCategorieRegistered) { return res.status(HTTP_STATUS.UNPROCESSABLE_ENTITY).json({ error: 'Categoria não encontrada para o blog.' }); };
+            const blogCategoryRegistered = await BlogCategory.findOne({ where: { blog: blog.id, category: categoryId } });
+            if (!blogCategoryRegistered) { return res.status(HTTP_STATUS.UNPROCESSABLE_ENTITY).json({ error: 'Categoria não encontrada para o blog.' }); };
 
-            await blogCategorieRegistered.destroy();
+            await blogCategoryRegistered.destroy();
 
             return res.status(HTTP_STATUS.OK).json({ message: 'Tag deletada com sucesso.' });
         } catch (error) {
@@ -82,38 +82,38 @@ class BlogCategorieController {
     };
 
     /**
-     * Get BlogCategorie by blog id.
+     * Get BlogCategory by blog id.
      * @param {Request} req - HTTP Request object.
      * @param {Response} res - HTTP Response object.
      * @returns {void}
      */
-    static async getBlogCategorieByBlog(req, res) {
+    static async getBlogCategoryByBlog(req, res) {
         const { id } = req.params;
 
         try {
-            const blogCategorie = await BlogCategorie.findAll({ where: { blog: id } });
-            if (!blogCategorie) { return res.status(HTTP_STATUS.NOT_FOUND).json({ error: 'Relação blog | categorie não encontrada.' }); };
+            const blogCategory = await BlogCategory.findAll({ where: { blog: id } });
+            if (!blogCategory) { return res.status(HTTP_STATUS.NOT_FOUND).json({ error: 'Relação blog | category não encontrada.' }); };
 
-            return res.status(HTTP_STATUS.OK).json({ result: blogCategorie });
+            return res.status(HTTP_STATUS.OK).json({ result: blogCategory });
         } catch (error) {
             return res.status(HTTP_STATUS.INTERNAL_SERVER_ERROR).json({ error: error.message });
         };
     };
 
     /**
-     * Get BlogCategorie by categorie id.
+     * Get BlogCategory by category id.
      * @param {Request} req - HTTP Request object.
      * @param {Response} res - HTTP Response object.
      * @returns {void}
      */
-    static async getBlogCategorieByCategorie(req, res) {
+    static async getBlogCategoryByCategory(req, res) {
         const { id } = req.params;
 
         try {
-            const blogCategorie = await BlogCategorie.findAll({ where: { categorie: id } });
-            if (!blogCategorie) { return res.status(HTTP_STATUS.NOT_FOUND).json({ error: 'Relação blog | categoria não encontrada.' }); };
+            const blogCategory = await BlogCategory.findAll({ where: { category: id } });
+            if (!blogCategory) { return res.status(HTTP_STATUS.NOT_FOUND).json({ error: 'Relação blog | categoria não encontrada.' }); };
 
-            return res.status(HTTP_STATUS.OK).json({ result: blogCategorie });
+            return res.status(HTTP_STATUS.OK).json({ result: blogCategory });
         } catch (error) {
             return res.status(HTTP_STATUS.INTERNAL_SERVER_ERROR).json({ error: error.message });
         };
@@ -125,9 +125,9 @@ class BlogCategorieController {
      * @param {Response} res - HTTP Response object.
      * @returns {void}
      */
-    static async getAllBlogCategorie(req, res) {
+    static async getAllBlogCategory(req, res) {
         try {
-            const result = await BlogCategorie.findAll({
+            const result = await BlogCategory.findAll({
                 order: [
                     ['id', 'ASC'] 
                 ]
@@ -140,4 +140,4 @@ class BlogCategorieController {
     };
 };
 
-module.exports = BlogCategorieController;
+module.exports = BlogCategoryController;
