@@ -10,16 +10,17 @@ const { secretJWT } = require('../sensitiveData/config');
  * @returns {string|null} Token string or null in case of error.
  */
 const createUserToken = (user, time) => {
-    try {
-        const token = jwt.sign({
-            name: user.name,
-            id: user.id
-        }, secretJWT, { expiresIn: time });
+    if (!user || typeof user !== 'object' || !user.name || !user.id) {
+        throw new Error('Usuário inválido para criar o token.');
+    }
 
-        return token;
-    } catch (err) {
-        throw new Error(`Erro ao criar token: ${err.message}`);
-    };
+    const token = jwt.sign({
+        name: user.name,
+        id: user.id
+    }, secretJWT, { expiresIn: time });
+
+    return token;
 };
+
 
 module.exports = createUserToken;

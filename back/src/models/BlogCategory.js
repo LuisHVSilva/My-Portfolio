@@ -1,11 +1,11 @@
 module.exports = (sequelize, DataTypes) => {
-    const BlogCategorie = sequelize.define('Blog_Categorie', {
+    const BlogCategory = sequelize.define('Blog_Category', {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true
         },        
-        categorie: {
+        category: {
             type: DataTypes.INTEGER,
             allowNull: false
         },
@@ -21,12 +21,12 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             allowNull: false
         }
-    }, { timestamps: true, tableName: "Blog_Categorie"  });
+    }, { timestamps: true, tableName: "Blog_Category"  });
 
-    BlogCategorie.associate = (models) => {
-        BlogCategorie.belongsTo(models.User, { as: 'creator', foreignKey: 'createdBy' });
-        BlogCategorie.belongsTo(models.User, { as: 'updated', foreignKey: 'updatedBy' });
+    BlogCategory.associate = (models) => {
+        BlogCategory.belongsTo(models.User, { as: 'creator', foreignKey: 'createdBy' });
+        BlogCategory.belongsTo(models.User, { as: 'updated', foreignKey: 'updatedBy' });
     };
 
-    return BlogCategorie;
+    return BlogCategory;
 };

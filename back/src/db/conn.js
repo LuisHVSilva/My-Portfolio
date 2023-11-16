@@ -4,25 +4,21 @@ const { Sequelize } = require('sequelize');
 // Sensitive Data
 const { database } = require('../sensitiveData/config');
 
-const databaseURL = process.env.database || database.renderExternalURL;
-
-const sequelize = new Sequelize(databaseURL, {
+const sequelize = new Sequelize(
+    database.database,
+    database.user,
+    database.password, {
+    host: database.host,
     dialect: 'postgres',
-    dialectOptions: {
-        ssl: {
-            require: true,  
-            rejectUnauthorized: false // <<<<<<< YOU NEED THIS          
-        }
-    }
 });
 
 const models = {
     User: require('../models/User')(sequelize, Sequelize),
     Blog: require('../models/Blog')(sequelize, Sequelize),
     Tag: require('../models/Tag')(sequelize, Sequelize),
-    Categorie: require('../models/Categorie')(sequelize, Sequelize),
+    Category: require('../models/Category')(sequelize, Sequelize),
     Blog_Tag: require('../models/BlogTag')(sequelize, Sequelize),
-    Blog_Categorie: require('../models/BlogCategorie')(sequelize, Sequelize),
+    Blog_Category: require('../models/BlogCategory')(sequelize, Sequelize),
     Update_Logs: require('../models/UpdateLog')(sequelize, Sequelize),
     User_Verification: require('../models/UserVerification')(sequelize, Sequelize),
 };
