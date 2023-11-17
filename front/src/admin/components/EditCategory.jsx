@@ -3,25 +3,25 @@ import React, { useEffect, useRef, useState } from 'react';
 
 // Hooks
 import useHandle from '../hooks/useHandle';
-import useCategories from '../hooks/useCategories'
+import useCategorys from '../hooks/useCategorys'
 
 // Forms Components
 import Input from './forms/Input';
 import Select from './forms/Select';
 import FormMesseges from './forms/FormMesseges';
 
-const EditCategorie = () => {
+const EditCategory = () => {
     const formRef = useRef(null);
     const { handleSubmit, handleDelete } = useHandle();
-    const { getAllCategories, getCategorieById, editCategories, deleteCategories } = useCategories();
+    const { getAllCategorys, getCategoryById, editCategorys, deleteCategorys } = useCategorys();
 
-    const [allCategories, setAllCategories] = useState({});    
+    const [allCategorys, setAllCategorys] = useState({});    
     
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const categories = await getAllCategories();
-                setAllCategories(categories);
+                const categorys = await getAllCategorys();
+                setAllCategorys(categorys);
                        
             } catch (error) {
                 console.error(error);
@@ -37,9 +37,9 @@ const EditCategorie = () => {
             <FormMesseges />
             <form ref={formRef} className='form mb-5' autoComplete="off">
                 <Select
-                    obj={allCategories}
+                    obj={allCategorys}
                     label="Categorias"
-                    handleOnChange={async (e) => { await getCategorieById(e.target.value) }}
+                    handleOnChange={async (e) => { await getCategoryById(e.target.value) }}
                 />
 
                 <Input
@@ -50,12 +50,12 @@ const EditCategorie = () => {
                 />
 
                 <div className="form-button">
-                    <button type="submit" onClick={(e) => handleSubmit(e, formRef, editCategories)} className='mt-5'>Editar</button>
-                    <button type="submit" onClick={(e) => handleDelete(e, formRef, deleteCategories)} className='mt-5'>Excluir</button>
+                    <button type="submit" onClick={(e) => handleSubmit(e, formRef, editCategorys)} className='mt-5'>Editar</button>
+                    <button type="submit" onClick={(e) => handleDelete(e, formRef, deleteCategorys)} className='mt-5'>Excluir</button>
                 </div>
             </form>
         </main>
     );
 };
 
-export default EditCategorie;
+export default EditCategory;

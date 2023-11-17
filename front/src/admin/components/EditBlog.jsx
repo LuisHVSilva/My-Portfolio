@@ -6,9 +6,9 @@ import useHandle from '../hooks/useHandle';
 import useUpdateFormData from '../hooks/useUpdateFormData'
 import useBlogs from '../hooks/useBlogs';
 import useTags from '../hooks/useTags'
-import useCategories from '../hooks/useCategories';
+import useCategorys from '../hooks/useCategorys';
 import useBlogTags from '../hooks/useBlogTags';
-import useBlogCategories from '../hooks/useBlogCategories';
+import useBlogCategorys from '../hooks/useBlogCategorys';
 
 // Forms Components
 import FormMesseges from './forms/FormMesseges';
@@ -22,7 +22,7 @@ const EditBlog = () => {
     // Helper Hooks
     const formRef = useRef(null);
     const { handleSubmit, handleDelete } = useHandle();
-    const { updateActiveTags, updateActiveCategories } = useUpdateFormData();
+    const { updateActiveTags, updateActiveCategorys } = useUpdateFormData();
 
     // Blog hooks and useStates
     const { getAllBlogs, getBlogById, editBlog, deleteBlog } = useBlogs();
@@ -36,21 +36,21 @@ const EditBlog = () => {
     const [allTags, setAllTags] = useState({});
     const [activeTags, setActiveTags] = useState({});
 
-    // Categories Hooks and useStates
-    const { getAllCategories } = useCategories();
-    const [allCategories, setAllCategories] = useState({});
-    const [activeCategories, setActiveCategories] = useState({})
+    // Categorys Hooks and useStates
+    const { getAllCategorys } = useCategorys();
+    const [allCategorys, setAllCategorys] = useState({});
+    const [activeCategorys, setActiveCategorys] = useState({})
 
     // Blogtags Hooks 
     const { getBlogTagByBlogId } = useBlogTags();
 
-    // BlogCategories Hooks
-    const { getBlogCategorieByBlogId } = useBlogCategories();
+    // BlogCategorys Hooks
+    const { getBlogCategoryByBlogId } = useBlogCategorys();
 
     useEffect(() => {
         const fetchData = async () => {
             setAllTags(await getAllTags());
-            setAllCategories(await getAllCategories());
+            setAllCategorys(await getAllCategorys());
 
             const blogs = await getAllBlogs();
             setAllBlogs(blogs);
@@ -79,10 +79,10 @@ const EditBlog = () => {
         const activeTags = await updateActiveTags(tags);
         setActiveTags(activeTags);
 
-        const categories = await getBlogCategorieByBlogId(blogId)
+        const categorys = await getBlogCategoryByBlogId(blogId)
 
-        const activeBlogs = await updateActiveCategories(categories);
-        setActiveCategories(activeBlogs);
+        const activeBlogs = await updateActiveCategorys(categorys);
+        setActiveCategorys(activeBlogs);
     };
 
     /**
@@ -169,13 +169,13 @@ const EditBlog = () => {
 
                 <Checkbox
                     legend='Categorias'
-                    allObject={allCategories}
-                    activeObject={activeCategories}
-                    setActiveObject={setActiveCategories}
+                    allObject={allCategorys}
+                    activeObject={activeCategorys}
+                    setActiveObject={setActiveCategorys}
                 />
 
                 <div className="form-button">
-                    <button type="submit" onClick={(e) => handleSubmit(e, formRef, editBlog, activeCategories, activeTags)} className='mt-5'>Editar</button>
+                    <button type="submit" onClick={(e) => handleSubmit(e, formRef, editBlog, activeCategorys, activeTags)} className='mt-5'>Editar</button>
                     <button type="submit" onClick={(e) => handleDelete(e, formRef, deleteBlog)} className='mt-5'>Excluir</button>
                 </div>
             </form>

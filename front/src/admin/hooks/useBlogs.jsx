@@ -11,7 +11,7 @@ import {URL} from '../sensitiveData/config';
 
 // Hooks
 import useFlashMessages from './useFlashMessages';
-import useBlogCategories from './useBlogCategories';
+import useBlogCategorys from './useBlogCategorys';
 import useBlogTags from './useBlogTags';
 
 function validateFields(blog) {
@@ -36,7 +36,7 @@ function getImageCheckboxesURL(blog) {
 }
 
 const useBlogs = () => {
-    const { registerBlogCategorie, deleteBlogCategorie } = useBlogCategories();
+    const { registerBlogCategory, deleteBlogCategory } = useBlogCategorys();
     const { registerBlogTag, deleteBlogTag } = useBlogTags();
 
     const { setFlashMessage } = useFlashMessages();    
@@ -74,13 +74,13 @@ const useBlogs = () => {
     };
 
     /**
-     * Registers a new blog with specified categories and tags.
+     * Registers a new blog with specified categorys and tags.
      * @param {Object} blog - The blog object to be registered.
-     * @param {Array} categories - An array of category objects associated with the blog.
+     * @param {Array} categorys - An array of category objects associated with the blog.
      * @param {Array} tags - An array of tag objects associated with the blog.
      * @return {Promise} A promise that resolves once the blog is registered.
      */
-    async function registerBlog(blog, categories, tags) {
+    async function registerBlog(blog, categorys, tags) {
         for (const key in blog) {
             if (key.startsWith('newURL_image_')) {
                 delete blog[key];
@@ -93,22 +93,28 @@ const useBlogs = () => {
                 setFlashMessage(blogError, 'error');
                 return null;
             };
+            console.clear()
+            
 
-            const image_one = await registerImage(blog.image_one);
-            const image_two = await registerImage(blog.image_two);
-            const image_three = await registerImage(blog.image_three);
-
+            // const image_one = await registerImage(blog.image_one);
+            // const image_two = await registerImage(blog.image_two);
+            // const image_three = await registerImage(blog.image_three);
+            
+            const image_one = "imagem um"
+            const image_two = "imagem um"
+            const image_three = "imagem um"
             blog.image_one = image_one;
             blog.image_two = image_two;
             blog.image_three = image_three;
+            console.log(blog.text)
+            // const response = await api.post(`${URL.BLOG}`, blog);
+            // const blogRegistered = response.data.blog;
+            
 
-            const response = await api.post(`${URL.BLOG}`, blog);
-            const blogRegistered = response.data.blog;
+            // await registerBlogCategory(blogRegistered, categorys);
+            // await registerBlogTag(blogRegistered, tags);
 
-            await registerBlogCategorie(blogRegistered, categories);
-            await registerBlogTag(blogRegistered, tags);
-
-            window.location.reload();
+            // window.location.reload();
         } catch (err) {
             const msgText = err.response.data.error;
             const msgType = 'error';
@@ -134,13 +140,13 @@ const useBlogs = () => {
     };
 
     /**
-     * Edits an existing blog with specified categories and tags.
+     * Edits an existing blog with specified categorys and tags.
      * @param {Object} blog - The updated blog object.
-     * @param {Array} categories - An array of category objects associated with the blog.
+     * @param {Array} categorys - An array of category objects associated with the blog.
      * @param {Array} tags - An array of tag objects associated with the blog.
      * @return {Promise} A promise that resolves once the blog is successfully edited.
      */
-    async function editBlog(blog, categories, tags) {
+    async function editBlog(blog, categorys, tags) {
         try {
             const imageCheckboxesURL = getImageCheckboxesURL(blog);
             const oldBlog = await getBlogById(blog.id);
@@ -153,8 +159,8 @@ const useBlogs = () => {
 
             await api.patch(`${URL.BLOG}/${blog.id}`, blog);
 
-            await registerBlogCategorie(blog, categories)
-            await deleteBlogCategorie(blog, categories)
+            await registerBlogCategory(blog, categorys)
+            await deleteBlogCategory(blog, categorys)
 
             await registerBlogTag(blog, tags);
             await deleteBlogTag(blog, tags)

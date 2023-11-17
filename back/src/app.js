@@ -21,10 +21,10 @@ const { adminURL } = require('./sensitiveData/config');
 const app = express();
 
 app.use(express.json());
+// app.use(bodyParser.json({ limit: '5mb' })); // Ajuste o limite conforme necessário
 app.use(cors({
   credentials: true,
-  origin: 'http://localhost:5173',
-  credentials: true,
+  origin: 'http://localhost:5173',  
   exposedHeaders: ['Set-Cookie', 'Date', 'ETag'],
   methods: 'GET, HEAD, PATCH, POST, DELETE'
 }));

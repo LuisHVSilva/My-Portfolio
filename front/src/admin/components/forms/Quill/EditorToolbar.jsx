@@ -67,9 +67,10 @@ export const formats = [
 ];
 
 const QuillToolbar = ({ imageData, quill }) => {
-    const handleImageOneClick = (image, quill, alt) => {
+    const handleImageOneClick = (image, quill, alt, className) => {
         if (image && quill) {
-            const message = `<img src="${image}" alt="${alt}" />`;
+            // const message = `<img alt="${alt}" class="${className}" src="${image}"/>`;
+            const message = `<img class="${className}" />`;
             quill.clipboard.dangerouslyPasteHTML(quill.getLength(), message);
         }
     };
@@ -120,13 +121,13 @@ const QuillToolbar = ({ imageData, quill }) => {
                 {imageData &&
                     <span className="ql-formats imageButton">
                         {imageData.image_one &&
-                            <CustomImageOne onClick={() => handleImageOneClick(imageData.image_one, quill, 'Image one')} />
+                            <CustomImageOne onClick={() => handleImageOneClick(imageData.image_one, quill, 'Image one', "image_one")} />
                         }
                         {imageData.image_two &&
-                            <CustomImageTwo onClick={() => handleImageOneClick(imageData.image_two, quill, 'Image dois')} />
+                            <CustomImageTwo onClick={() => handleImageOneClick(imageData.image_two, quill, 'Image dois', "image_two")} />
                         }
                         {imageData.image_three &&
-                            <CustomImageThree onClick={() => handleImageOneClick(imageData.image_three, quill, 'Image três')} />
+                            <CustomImageThree onClick={() => handleImageOneClick(imageData.image_three, quill, 'Image três', "image_three")} />
                         }
                     </span>
                 }

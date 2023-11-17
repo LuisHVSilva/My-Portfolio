@@ -1,9 +1,9 @@
 // Hooks
-import useCategories from "./useCategories";
+import useCategorys from "./useCategorys";
 import useTags from "./useTags";
 
 const useUpdateFormData = () => {        
-    const { getCategorieById } = useCategories();
+    const { getCategoryById } = useCategorys();
     const { getTagById } = useTags();
 
     /**
@@ -31,30 +31,30 @@ const useUpdateFormData = () => {
     };
 
     /**
-     * Updates active categories for a blog.
-     * @param {Object} blogCategorie - The active categories associated with the blog.
-     * @return {Promise} A promise that resolves to an updated object of active categories.
+     * Updates active categorys for a blog.
+     * @param {Object} blogCategory - The active categorys associated with the blog.
+     * @return {Promise} A promise that resolves to an updated object of active categorys.
      */
-    async function updateActiveCategories(blogCategorie) {
-        const updatedCategories = {}; 
+    async function updateActiveCategorys(blogCategory) {
+        const updatedCategorys = {}; 
 
         try {
-            for (const key in blogCategorie) {
-                const categorie = await getCategorieById(blogCategorie[key].categorie);
-                const newCategorie = {
-                    id: categorie.id,
-                    name: categorie.name,
+            for (const key in blogCategory) {
+                const category = await getCategoryById(blogCategory[key].category);
+                const newCategory = {
+                    id: category.id,
+                    name: category.name,
                 };
-                updatedCategories[blogCategorie[key].categorie] = newCategorie;
+                updatedCategorys[blogCategory[key].category] = newCategory;
             }
 
-            return updatedCategories;
+            return updatedCategorys;
         } catch (error) {
             console.error(error);
         }
     };
     
-    return { updateActiveTags, updateActiveCategories };
+    return { updateActiveTags, updateActiveCategorys };
 };
 
 export default useUpdateFormData;

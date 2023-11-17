@@ -65,7 +65,7 @@ const AdminDashboard = () => {
   const tablesList = (tables) => {
     tables = tables.filter(elemento => elemento !== 'User');
     tables = tables.filter(item => !item.includes("_"));
-
+    
     return (
       <>
         {tables.map((table, index) => (

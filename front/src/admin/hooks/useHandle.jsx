@@ -121,6 +121,7 @@ const useHandle = () => {
             if (value === 'on' && key !== 'highlight') { delete formValues[key] }
             if (value.type === 'application/octet-stream') { delete formValues[key] }
         });
+        
         registerFunction(formValues, ...data);
     };
 

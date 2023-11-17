@@ -1,29 +1,29 @@
 import React, { useEffect, useState } from 'react'
 import Highlights from '../components/Highlights'
 import Tags from '../components/Tags'
-import Categories from '../components/Categories'
+import Categorys from '../components/Categorys'
 import OtherPosts from '../components/OtherPosts'
 
 // Hooks
 import useBlogs from '../admin/hooks/useBlogs'
-import useCategories from '../admin/hooks/useCategories';
+import useCategorys from '../admin/hooks/useCategorys';
 import useTags from '../admin/hooks/useTags';
-import useBlogCategories from '../admin/hooks/useBlogCategories';
+import useBlogCategorys from '../admin/hooks/useBlogCategorys';
 import useBlogTags from '../admin/hooks/useBlogTags'
 import useBlogRender from '../hook/useBlogRender'
 
 const Blog = () => {
   const { getHighlights } = useBlogRender();
   const { getAllBlogs } = useBlogs();
-  const { getAllCategories } = useCategories();
-  const { getAllBlogCategorie } = useBlogCategories();
+  const { getAllCategorys } = useCategorys();
+  const { getAllBlogCategory } = useBlogCategorys();
   const { getAllTags } = useTags();
   const { getAllBlogTags } = useBlogTags();
 
   const [allBlogs, setAllBlogs] = useState({});
   const [highlightsBlogs, setHighlightsBlogs] = useState({});
-  const [allCategories, setAllCategories] = useState({});
-  const [allBlogCategories, setAllBlogCategories] = useState({});
+  const [allCategorys, setAllCategorys] = useState({});
+  const [allBlogCategorys, setAllBlogCategorys] = useState({});
   const [allTags, setAllTags] = useState({});
   const [allBlogTags, setAllBlogTags] = useState({});
 
@@ -31,8 +31,8 @@ const Blog = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setAllCategories(await getAllCategories());
-        setAllBlogCategories(await getAllBlogCategorie());
+        setAllCategorys(await getAllCategorys());
+        setAllBlogCategorys(await getAllBlogCategory());
         setAllTags(await getAllTags());
         setAllBlogTags(await getAllBlogTags());
 
@@ -61,9 +61,9 @@ const Blog = () => {
             tags={allTags}
           />
 
-          <Categories
-            categories={allCategories}
-            blogCategories={allBlogCategories} />
+          <Categorys
+            categorys={allCategorys}
+            blogCategorys={allBlogCategorys} />
         </section>
       </section>
 

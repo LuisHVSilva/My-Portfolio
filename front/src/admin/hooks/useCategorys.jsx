@@ -7,16 +7,16 @@ import { URL } from '../sensitiveData/config';
 // Hooks
 import useFlashMessages from './useFlashMessages';
 
-const useCategories = () => {
+const useCategorys = () => {
     const { setFlashMessage } = useFlashMessages()
 
     /**
-     * Fetches all categories from the API.
-     * @return {Promise} A promise that resolves to an array of categories.
+     * Fetches all categorys from the API.
+     * @return {Promise} A promise that resolves to an array of categorys.
      */
-    async function getAllCategories() {
+    async function getAllCategorys() {
         try {
-            const response = await api.get(URL.CATEGORIE);
+            const response = await api.get(URL.CATEGORY);
             const data = response.data.result;
 
             return data;
@@ -29,9 +29,9 @@ const useCategories = () => {
      * Fetches category based on category id from the API.
      * @return {Promise} A promise that resolves to an array of category.
      */
-    async function getCategorieById(id) {
+    async function getCategoryById(id) {
         try {
-            const response = await api.get(`${URL.CATEGORIE}/${id}`);
+            const response = await api.get(`${URL.CATEGORY}/${id}`);
             const data = response.data.result;
 
             return data;
@@ -45,9 +45,9 @@ const useCategories = () => {
      * @param {Object} category - The category object to be registered.
      * @return {Promise} A promise that resolves once the category is successfully registered.
      */
-    async function registerCategories(category) {
+    async function registerCategorys(category) {
         try {
-            await api.post(`${URL.CATEGORIE}`, category);
+            await api.post(`${URL.CATEGORY}`, category);
 
             window.location.reload();
         } catch (err) {
@@ -62,10 +62,10 @@ const useCategories = () => {
      * @param {Object} category - The category object to be edited.
      * @return {Promise} A promise that resolves once the category is successfully edited.
      */
-    async function editCategories(category) {
+    async function editCategorys(category) {
         try {
             const id = category.id;
-            await api.patch(`${URL.CATEGORIE}/${id}`, category)
+            await api.patch(`${URL.CATEGORY}/${id}`, category)
 
             window.location.reload();
         } catch (err) {
@@ -80,9 +80,9 @@ const useCategories = () => {
      * @param {Object} category - The category object to be deleted.
      * @return {Promise} A promise that resolves once the category is successfully deleted.
      */
-    async function deleteCategories(id) {
+    async function deleteCategorys(id) {
         try {
-            await api.delete(`${URL.CATEGORIE}/${id}`);
+            await api.delete(`${URL.CATEGORY}/${id}`);
 
             window.location.reload();
         } catch (err) {
@@ -92,7 +92,7 @@ const useCategories = () => {
         };
     };
 
-    return { getAllCategories, getCategorieById, registerCategories, editCategories, deleteCategories };
+    return { getAllCategorys, getCategoryById, registerCategorys, editCategorys, deleteCategorys };
 };
 
-export default useCategories;
+export default useCategorys;

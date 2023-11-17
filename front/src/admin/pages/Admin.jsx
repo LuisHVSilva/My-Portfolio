@@ -14,13 +14,13 @@ import NotFound from '../../pages/NotFound';
 // Register Components
 import RegisterUser from '../components/RegisterUser';
 import RegisterTag from '../components/RegisterTag';
-import RegisterCategories from '../components/RegisterCategories';
+import RegisterCategorys from '../components/RegisterCategorys';
 import RegisterBlog from '../components/RegisterBlog';
 
 // Edits Components
 import EditUser from '../components/EditUser';
 import EditTags from '../components/EditTags';
-import EditCategorie from '../components/EditCategorie';
+import EditCategory from '../components/EditCategory';
 import EditBlog from '../components/EditBlog';
 
 // Context
@@ -44,13 +44,13 @@ function Admin() {
         {/* Register */}
         <Route path={ROUTES.USER} element={<RegisterUser />} />
         <Route path={ROUTES.TAG} element={<RegisterTag />} />
-        <Route path={ROUTES.CATEGORIE} element={<RegisterCategories />} />
+        <Route path={ROUTES.CATEGORY} element={<RegisterCategorys />} />
         <Route path={ROUTES.BLOG} element={<RegisterBlog />} />
 
         {/* Edit */}
         <Route path={`${ROUTES.USER}/edit/:id`} element={<EditUser />} />
         <Route path={`${ROUTES.TAG}/edit/`} element={<EditTags />} />
-        <Route path={`${ROUTES.CATEGORIE}/edit/`} element={<EditCategorie />} />
+        <Route path={`${ROUTES.CATEGORY}/edit/`} element={<EditCategory />} />
         <Route path={`${ROUTES.BLOG}/edit/`} element={<EditBlog />} />
       </Routes>
     );

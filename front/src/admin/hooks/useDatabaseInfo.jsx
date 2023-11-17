@@ -51,21 +51,6 @@ const useDatabaseInfo = () => {
         };
     };
 
-    /**
-     * Fetches the list of database logs     
-     * @return {Promise} A promise that resolves to an array of database log.
-     */
-    async function getLogs() {
-        try {
-            const response = await api.get(`${URL.LOG}`);
-            const data = response.data.result;
-
-            return data;
-        } catch (err) {
-            console.error(err);
-        };
-    };
-
     async function deleteVerifyToken() {
         try {
             await api.delete(`${URL.VERIFY_TOKEN}/delete`);
@@ -76,7 +61,7 @@ const useDatabaseInfo = () => {
         }
     }
 
-    return { getTables, getColumns, getLogs, getLogs, deleteVerifyToken };
+    return { getTables, getColumns, getLogs, deleteVerifyToken };
 };
 
 export default useDatabaseInfo;

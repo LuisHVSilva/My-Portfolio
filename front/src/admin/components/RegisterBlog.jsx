@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 // Hooks
 import useBlogs from '../hooks/useBlogs';
 import useTags from '../hooks/useTags'
-import useCategories from '../hooks/useCategories';
+import useCategorys from '../hooks/useCategorys';
 import useHandle from '../hooks/useHandle';
 
 // Forms Components
@@ -18,12 +18,12 @@ const RegisterBlog = () => {
     const { handleSubmit, handleBlogPreview } = useHandle();
     const { registerBlog } = useBlogs();
     const { getAllTags } = useTags();
-    const { getAllCategories } = useCategories();
+    const { getAllCategorys } = useCategorys();
 
     const [allTags, setAllTags] = useState({});
     const [tags, setTags] = useState({});
-    const [allCategories, setAllCategories] = useState({});
-    const [categories, setCategories] = useState({});
+    const [allCategorys, setAllCategorys] = useState({});
+    const [categorys, setCategorys] = useState({});
     const [image, setImage] = useState();
 
     const formRef = useRef(null);
@@ -32,7 +32,7 @@ const RegisterBlog = () => {
     useEffect(() => {
         const fetchData = async () => {
             setAllTags(await getAllTags());
-            setAllCategories(await getAllCategories());
+            setAllCategorys(await getAllCategorys());
         };
 
         fetchData();
@@ -47,7 +47,7 @@ const RegisterBlog = () => {
             <p className="h1 register-title">Registrar</p>
             <FormMesseges />
 
-            <form ref={formRef} onSubmit={(e) => handleSubmit(e, formRef, registerBlog, categories, tags)} className='register-blog form mb-5'>
+            <form ref={formRef} onSubmit={(e) => handleSubmit(e, formRef, registerBlog, categorys, tags)} className='register-blog form mb-5'>
                 <Input
                     text="Título"
                     type="text"
@@ -110,9 +110,9 @@ const RegisterBlog = () => {
 
                 <Checkbox
                     legend='Categorias'
-                    allObject={allCategories}
-                    activeObject={categories}
-                    setActiveObject={setCategories}
+                    allObject={allCategorys}
+                    activeObject={categorys}
+                    setActiveObject={setCategorys}
                 />
                 <div className="form-button">
                     <button type="submit">Cadastrar</button>
