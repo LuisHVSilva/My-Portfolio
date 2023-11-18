@@ -2,21 +2,21 @@
 const nodemailer = require('nodemailer');
 
 // Sensitive datas
-const { email } = require('../sensitiveData/config');
+const { EMAIL } = require('../sensitiveData/config');
 
 const transporter = nodemailer.createTransport({
-    host: 'smtp-mail.outlook.com',
-    port: '587',
+    host: EMAIL.HOST,
+    port: EMAIL.PORT,
     secure: false,
     auth: {
-        user: email.account,
-        pass: email.password
+        user: EMAIL.ACCOUNT,
+        pass: EMAIL.PASSWORD
     }
 });
 
 const sendEmailConfirmation = (recipient, confirmationCode) => {
     const mailOptions = {
-        from: email.account,
+        from: EMAIL.ACCOUNT,
         to: recipient,
         subject: 'Confirmação de Cadastro',
         html: `<p>Obrigado por se cadastrar! Use o código abaixo para confirmar sua conta:</p>
@@ -26,7 +26,7 @@ const sendEmailConfirmation = (recipient, confirmationCode) => {
     transporter.sendMail(mailOptions).then(console.log('Email enviado')).catch(error => console.error('Email não enviado: ' + error));
 
     const adminMailOptions = {
-        from: email.account,
+        from: EMAIL.ACCOUNT,
         to: 'coderluissilva@gmail.com',
         subject: 'Usuário tentando se cadastrar',
         html: `<p>Usuário tem o email ${recipient}</p>`

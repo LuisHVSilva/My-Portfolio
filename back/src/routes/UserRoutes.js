@@ -8,17 +8,34 @@ const UserVerificationController = require('../controller/UserVerificationContro
 // Middleware
 const authMiddleware = require('../middlewares/authMiddleware');
 
-const router = Router(); 
-router.post('/', UserController.login);
-router.post('/user', UserController.register);
-router.post('/logout', authMiddleware, UserController.logout);
-router.get('/user', authMiddleware, UserController.getAllUsers);
-router.get('/user/:id', authMiddleware, UserController.getUserById);
-router.patch('/user/:id', authMiddleware, UserController.edit);
-router.delete('/user/:id', authMiddleware, UserController.delete);
+// Sensitive Data
+const { ROUTES } = require('../sensitiveData/config');
+
+const router = Router();
+
+// Route to register a User.
+router.post(ROUTES.REGISTER_USER, UserController.register);
+
+// Route to login a user.
+router.post(ROUTES.LOGIN, UserController.login);
+
+// Route to logout a user.
+router.post(ROUTES.LOGOUT, authMiddleware, UserController.logout);
+
+// Route to get all User registers.
+router.get(ROUTES.GET_ALL_USER, authMiddleware, UserController.getAllUsers);
+
+// Route to get a User with the user id.
+router.get(ROUTES.GET_BY_USER_ID_USER, authMiddleware, UserController.getUserById);
+
+// Route to edit a User.
+router.patch(ROUTES.EDIT_USER, authMiddleware, UserController.edit);
+
+// Route to delete a User.
+router.delete(ROUTES.DELETE_USER, authMiddleware, UserController.delete);
 
 // User Verification token.
-router.post('/verification/:id', UserVerificationController.activeUser);
-router.delete('/verification/delete', authMiddleware, UserVerificationController.deleteTokens);
+router.post(ROUTES.REGISTER_VERIFICATION_USER_CODE, UserVerificationController.activeUser);
+router.delete(ROUTES.DELETE_VERIFICATION_USER_CODE, authMiddleware, UserVerificationController.deleteTokens);
 
 module.exports = router; 

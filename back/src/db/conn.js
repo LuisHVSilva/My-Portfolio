@@ -2,15 +2,17 @@
 const { Sequelize } = require('sequelize');
 
 // Sensitive Data
-const { database } = require('../sensitiveData/config');
+const { DATABASE } = require('../sensitiveData/config');
 
 const sequelize = new Sequelize(
-    database.database,
-    database.user,
-    database.password, {
-    host: database.host,
-    dialect: 'postgres',
-});
+    DATABASE.DATABASE_NAME,
+    DATABASE.USER,
+    DATABASE.PASSWORD,
+    {
+        host: DATABASE.HOST,
+        dialect: DATABASE.DATABASE_TYPE,
+    }
+);
 
 const models = {
     User: require('../models/User')(sequelize, Sequelize),
